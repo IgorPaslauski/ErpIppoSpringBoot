@@ -1,7 +1,7 @@
-package Controller;
+package com.example.ErpIppo.Controller;
 
-import Model.Company;
-import Repository.CompanyRepository;
+import com.example.ErpIppo.Model.Company;
+import com.example.ErpIppo.Repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
