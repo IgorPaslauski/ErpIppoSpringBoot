@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Usuário</title>
+</head>
+<body>
+<h1>Criar Novo Usuário</h1>
+<form id="create-form">
+    <label for="usuario">Usuário:</label>
+    <input type="text" id="usuario" name="usuario" required><br><br>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" required><br><br>
+
+    <button type="submit">Criar Usuário</button>
+</form>
+
+<script>
+    const createForm = document.getElementById('create-form');
+
+    createForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
+
+        const response = await fetch('/CriarUsuario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usuario: usuario,
+                senha: senha
+            })
+        });
+
+        if (response.ok) {
+            alert('Usuário criado com sucesso!');
+            window.location.href = '/index.html';
+        } else {
+            alert('Erro ao criar usuário.');
+        }
+    });
+</script>
+</body>
+</html>

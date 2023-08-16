@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Logar</title>
+    </head>
+    <body>
+        <h1>Logar</h1>
+        <h3><span th:text="${message}"></span></h3>
+        <form id="create-form">
+            <input type="text" name="usuario" id="usuario" placeholder="Login">
+            <input type="password" name="senha" id="senha" placeholder="Senha">
+            <input type="submit" value="Logar">
+        </form>
+    </body>
+    <script>
+        const createForm = document.getElementById('create-form');
+
+    createForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
+
+        const response = await fetch('/Logar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usuario: usuario,
+                senha: senha
+            })
+        });
+
+        if (response.ok) {
+            alert('Usuário logado com sucesso!');
+            window.location.href = '/Home';
+        } else {
+            alert('Erro ao logar usuário.');
+        }
+    });
+    </script>
+</html>
