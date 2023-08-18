@@ -3,43 +3,56 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Outlined -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
+            rel="stylesheet">
+
+        <!-- Filled -->
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+            rel="stylesheet">
+
+        <!-- Rounded -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
+            rel="stylesheet">
+
+        <!-- Sharp -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
+            rel="stylesheet">
+
+        <!-- Two tone -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="login.css">
+
         <title>Logar</title>
     </head>
     <body>
-        <h1>Logar</h1>
-        <h3><span th:text="${message}"></span></h3>
-        <form id="create-form">
-            <input type="text" name="usuario" id="usuario" placeholder="Login">
-            <input type="password" name="senha" id="senha" placeholder="Senha">
-            <input type="submit" value="Logar">
-        </form>
+        <header class="headerLogin">
+            <div> ERP IPPO </div>
+        </header>
+        <main class="mainLogin">
+            <div>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+            <form class="formLogin" action="/login" method="post">
+                <div class="paiInputLogin">
+                    <label for="email">Email</label>
+                    <input class="inputLogin" type="email" name="email" id="email"
+                        placeholder="Digite seu email">
+                </div>
+                <div class="paiInputLogin">
+                    <label for="senha">Senha</label>
+                    <input class="inputLogin" type="password" name="senha" id="senha"
+                        placeholder="Digite sua senha">
+                </div>
+                <button type="submit" class="buttonLogin">Logar</button>
+            </form>
+        </main>
     </body>
-    <script>
-        const createForm = document.getElementById('create-form');
-
-    createForm.addEventListener('submit', async function(event) {
-        event.preventDefault();
-
-        const usuario = document.getElementById('usuario').value;
-        const senha = document.getElementById('senha').value;
-
-        const response = await fetch('/Logar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                usuario: usuario,
-                senha: senha
-            })
-        });
-
-        if (response.ok) {
-            alert('Usuário logado com sucesso!');
-            window.location.href = '/Home';
-        } else {
-            alert('Erro ao logar usuário.');
-        }
-    });
-    </script>
 </html>
